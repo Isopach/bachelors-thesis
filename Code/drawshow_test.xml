@@ -1,0 +1,16 @@
+ <item>
+    <time>Wed Jul 18 20:00:48 JST 2018</time>
+    <url><![CDATA[https://d19hf05jf0kxo4.cloudfront.net/mobile/publicOauthServiceNew.php]]></url>
+    <host ip="13.33.9.73">d19hf05jf0kxo4.cloudfront.net</host>
+    <port>443</port>
+    <protocol>https</protocol>
+    <method><![CDATA[POST]]></method>
+    <path><![CDATA[/mobile/publicOauthServiceNew.php]]></path>
+    <extension>php</extension>
+    <request base64="true"><![CDATA[UE9TVCAvbW9iaWMA==]]></request>
+    <status>200</status>
+    <responselength>539</responselength>
+    <mimetype>script</mimetype>
+    <response base64="true"><![CDATA[SFRUUC8=]]></response>
+    <comment></comment>
+  </item>
