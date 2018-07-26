@@ -1,0 +1,379 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+11pt, % The default document font size, options: 10pt, 11pt, 12pt
+%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+english, % ngerman for German
+singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+%chapterinoneline, % Uncomment to place the chapter title next to the number on one line
+%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+openright, % Makes page alternating without chapters starting on right side (use openright for that)
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{placeins}
+\usepackage{CJKutf8} % For Chinese, Japanese and Korean support
+
+\usepackage{mathpazo} % Use the Palatino font by default
+
+\usepackage[backend=biber,style=numeric,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+\addbibresource{articles.bib} % The filename of the bibliography
+\addbibresource{thesis.bib} % The filename of the bibliography
+\usepackage{graphicx}
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+
+
+\usepackage{amsmath} % Required for equations 
+\numberwithin{figure}{section} % Reset counter for figures per section
+\numberwithin{equation}{section} % Reset counter for equations per section (change to subsection if necessary)
+
+\usepackage{titlesec} % Start new page with each section
+\newcommand{\sectionbreak}%{\clearpage}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+\makeatletter
+\DeclareRobustCommand{\getlstname}{%
+ \begingroup
+  % \lstname seems to change hyphens into \textendash
+  \def\textendash{-}%
+  \filename@parse{\lstname}%
+  \texttt{\filename@base.\filename@ext}%
+ \endgroup
+}
+\makeatother
+
+\usepackage{listings}
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=single,                         % Any extra options here
+showstringspaces=false,            % 
+breaklines=true,
+postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+caption=\getlstname
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+% Javascript for inline
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  sensitive=true
+}
+
+% Javascript environment style
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+   basicstyle=\ttm,
+   showstringspaces=false,
+   showspaces=false,
+   breaklines=true,
+   frame=single,  
+   gobble=320, 
+   showtabs=false,
+   caption=\getlstname
+}
+
+% XML environment style
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  breaklines=true,
+  frame=single,
+  showstringspaces=false,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  morekeywords={xmlns,version,item,time,url,host ip,port,protocol,path,extension,request base64,status,responselength,mimetype,comment}% list your attributes here
+}
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=2.5cm, % Inner margin
+	outer=3.8cm, % Outer margin
+	bindingoffset=.5cm, % Binding offset
+	top=1.5cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\thesistitle{Investigating Potentially Harmful Applications on Android} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Dr. Jun \textsc{Murai}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{Dr. Keiji \textsc{Takeda}} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{Bachelor of Arts, Environment and Information Studies} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Koh \textsc{You Liang}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+
+\subject{Cyber Security} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\keywords{Android, Playstore, Google Play, PHA, Malware, Privacy,Mobile communication, computer network security, invasive software, mobile computing, public domain software, telecommunication traffic,transport protocols, personal information, HTTP traffic, statistical information, mobile bots, x86 malware} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{https://sfc.keio.jp}{Keio University}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{https://isc.sfc.wide.ad.jp}{takeda lab. ISC}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{https://www.sfc.wide.ad.jp/members.html}{Jun Murai's Internet Research Lab}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://ic.sfc.keio.ac.jp/ja/about-sfc/about-feis/}{Faculty of Environment and Information Studies}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\AtBeginDocument{
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+}
+
+\begin{document}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+\vspace*{.06\textheight}
+%\includegraphics[width=5cm,height=5cm,keepaspectratio]{logo.png}\\ % University/department logo
+{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+\textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
+
+\HRule \\[0.4cm] % Horizontal line
+{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+\HRule \\[1.5cm] % Horizontal line
+ 
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+\href{https://ylkoh.top}{\authorname} % Author name - remove the \href bracket to remove the link
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright} \large
+\emph{Chief Examiner:} \\
+\href{https://isc.sfc.wide.ad.jp}{\examname} % Supervisor name - remove the \href bracket to remove the link  
+\\
+\emph{Co-Examiners:} \\
+\href{https://rg.sfc.keio.ac.jp/index.en.html}{\supname} \\
+\href{https://rg.sfc.keio.ac.jp/index.en.html}{Dr. Osamu \textsc{Nakamura}}
+\end{flushright}
+\end{minipage}\\[3cm]
+ 
+\vfill
+
+\large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
+\textit{in the}\\[0.4cm]
+\deptname\\\groupname\\[2cm] % Research group name and department name
+\begin{CJK}{UTF8}{min}徳田・村井・楠本・中村・高汐・バンミーター・植原・三次・
+中澤・武田 合同研究プロジェクト\end{CJK} 
+\vfill
+
+{\large \today}\\[4cm] % Date
+ 
+\vfill
+\end{center}
+\end{titlepage}
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+This paper talks about the ever increasing number of malware-riddled applications on the Android Play Store, and Google's lack of effective measures to counter them. I will propose and execute a proof-of-concept of my solution, which involves testing a random sample of 60 applications per category, using a two-pronged approach in identifying potentially harmful applications by performing robust regression of their permissions to find outliers, and then confirming these outliers by comparing the amount of traffic sent of a control phone with few contacts and a test phone with hundreds of contacts. A value is then assigned as a gauge of their potential risk and published towards the end of this paper.
+\end{abstract}
+
+%\begin{flushright}
+\noindent
+\textbf{Keywords:}
+Android, Playstore, Google Play, PHA, Potentially Harmful Apps, 
+Malware, Privacy, Mobile communication, computer network security, invasive software, mobile computing, public domain software, telecommunication traffic, transport protocols, personal information, HTTP traffic, statistical 
+information, mobile bots, x86 malware
+%\end{flushright}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\begin{acknowledgements}
+\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+First and foremost, I would like to thank my project supervisor and advisor, Keiji Takeda, for providing me an opportunity to research on mobile security, a field that most undergraduate students do not get exposed to. Your patience and advice has been invaluable in the successful completion of this project. 
+
+Secondly, I would like to thank my family, especially my Mum and Dad for letting me become fully independent at an age younger than all of my peers. Thank you for not giving up on me back when I dropped out of high school, and for encouraging me to pursue my interest in computers. Thank you for believing in me, and for letting me come to Japan despite never having taken Japanese lessons. Your support has led me to become what I am today. I would also like to thank my little sister, Angela, for inspiring me to try living overseas.
+
+Thirdly, I would like to thank my friends from Singapore, who have spurred me on with their excellence in academia, especially Ian who made it to CERN; and Matthias and DS, who have cheered me up during my darkest moments. Also, special thanks to Raynold, for introducing me to the real life applications of cyber security.
+
+Fourthly, I would like to express appreciation for other members of ISC - Korry, my Eigo Jedi friend from Hawaii, and Jojo, Aaron and Bradley for all the pasta sessions we have had.
+
+Lastly, I would also like to thank my peers in the GIGA Program, particularly Nick and Ival, who have been my comrades in arms, as well as Jie, Jake and Shiina. I will never forget the times we have spent together and the experiences we have shared. You guys have made living in Japan a very fun experience.
+
+\end{acknowledgements}
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+\hypersetup{linkcolor=black} % Change color of table of contents to black
+\tableofcontents % Prints the main table of contents
+
+\listoffigures % Prints the list of figures
+
+\listoftables % Prints the list of tables
+
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
+
+\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+\textbf{APK} & \textbf{A}pplication \textbf{P}ackage \textbf{K}it\\
+\textbf{HTTP} & \textbf{H}yper \textbf{T}ext \textbf{T}ransfer \textbf{P}rotocol \\
+\textbf{HTTPS} & \textbf{H}yper \textbf{T}ext \textbf{T}ransfer \textbf{P}rotocol \textbf{S}ecure \\
+\textbf{IAP} & \textbf{I}n \textbf{A}pp \textbf{P}urchase\\
+\textbf{IP} & \textbf{I}nternet \textbf{P}rotocol \\
+\textbf{NLP} & \textbf{N}atural \textbf{L}anguage \textbf{P}rocessing\\
+\textbf{OS} & \textbf{O}perating \textbf{S}ystem \\
+\textbf{OSS} & \textbf{O}pen \textbf{S}ource \textbf{S}oftware\\
+\textbf{OOTB} & \textbf{O}ut \textbf{O}f \textbf{T}he \textbf{B}ox \\
+\textbf{PHA} & \textbf{P}otentially \textbf{H}armful \textbf{A}pplications\\
+\textbf{SDK} & \textbf{S}oftware \textbf{D}evelopment \textbf{K}it \\
+\textbf{SNS} & \textbf{S}ocial \textbf{N}etworking \textbf{S}ites \\
+\textbf{SVM} & \textbf{S}upport \textbf{V}ector \textbf{M}achine \\
+\textbf{SSL/TLS} & \textbf{S}ecure \textbf{S}ocket \textbf{L}ayer / \textbf{T}ransport \textbf{S}ecurity \\
+\textbf{VPN} & \textbf{V}irtual \textbf{P}rivate \textbf{N}etwork\\
+
+\end{abbreviations}
+
+%----------------------------------------------------------------------------------------
+%	PHYSICAL CONSTANTS (REMOVED)
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SYMBOLS
+%----------------------------------------------------------------------------------------
+
+\begin{symbols}{lll} % Include a list of Symbols (a three column table)
+
+$\%\vec{\Delta}$ & percentage difference & \si{\percent} \\
+%$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
+%Symbol & Name & Unit \\
+
+\addlinespace % Gap to separate the Roman symbols from the Greek
+
+%$\omega$ & angular frequency & \si{\radian} \\
+
+\end{symbols}
+
+%----------------------------------------------------------------------------------------
+%	DISCLAIMER
+%----------------------------------------------------------------------------------------
+
+\dedicatory{This is a disclaimer stating that this project is done for research purposes only. My research was done in goodwill for the advancement of science and I never had, and never have any intention to defame any applications or companies. Assigned ratings do not necessarily mean that the application is definitely a malware; it only a possibility that it has been exhibiting potentially harmful behavior.} 
+
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{thesis} % Return the page headers back to the "thesis" style
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
+
+\include{Chapters/Chapter1}
+\include{Chapters/Chapter2} 
+\include{Chapters/Chapter3}
+\include{Chapters/Chapter4} 
+\include{Chapters/Chapter5} 
+\include{Chapters/Chapter6} 
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+\include{Appendices/FAQ}
+\include{Appendices/Glossary}
+%\include{Appendices/AppendixB}
+%\include{Appendices/AppendixC}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography
+
+%----------------------------------------------------------------------------------------
+
+\end{document}  
